@@ -1,0 +1,7 @@
+FROM ubuntu:18.04
+
+ADD install.sh /root/install.sh
+
+RUN chmod 777 /root/install.sh
+
+RUN /root/install.sh
