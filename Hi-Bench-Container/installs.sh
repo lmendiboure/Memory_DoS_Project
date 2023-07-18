@@ -3,7 +3,7 @@
 apt-get update
 
 # Install utils: python + bc + git + wget + nano + dstat
-apt-get install dstat
+apt-get install dstat apt-utils
 apt install python bc git wget nano -y
 
 
