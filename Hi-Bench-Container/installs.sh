@@ -3,8 +3,8 @@
 apt-get update
 
 # Install utils: python + bc + git + wget + nano + dstat
-
-apt install python bc git wget nano dstat -y
+apt-get install dstat
+apt install python bc git wget nano -y
 
 
 # Install Maven (+Clean Useless Files)
