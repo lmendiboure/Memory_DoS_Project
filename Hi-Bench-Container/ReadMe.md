@@ -42,15 +42,28 @@ Potential useful commands
   1. kubectl get pods --namespace=qos-guaranteed
   2. kubectl delete pods hibench-pod namespace=qos-guaranteed
   3. kubectl get pod hibench-pod --namespace=qos-guaranteed --output=yaml
+  4. minikube delete
 
 
 
 # Use
 
+`Note : Within the HiBench folder of the pod (exec + cd...)`
 
-To run workloads (once container started) - Could be directly integrated within RUN to directly obtain result and automatically stop the container once results are obtained:
+To run workloads (once pod started) - Could be directly integrated within RUN to directly obtain result and automatically stop the pod once results are obtained:
   1. ```bin/workloads/micro/wordcount/prepare/prepare.sh```
   2. ```bin/workloads/micro/wordcount/hadoop/run.sh```
+
+To display results:
+
+-> <HiBench_Root>/report/hibench.report
+-> <workload>/hadoop/bench.log: Raw logs on client side.
+-> <workload>/hadoop/monitor.html: System utilization monitor results.
+-> <workload>/hadoop/conf/<workload>.conf: Generated environment variable configurations for this workload.
+
+Note: To change the input data size, you can set hibench.scale.profile in conf/hibench.conf
+Note : Change (hibench.default.map.parallelism,hibench.default.shuffle.parallelism) in conf/hibench.conf to control the parallelism.
+
 
 # Known Errors
 
