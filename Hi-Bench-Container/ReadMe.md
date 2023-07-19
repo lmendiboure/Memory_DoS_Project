@@ -39,12 +39,12 @@ kubectl exec --namespace=qos-guaranteed hibench-pod --stdin --tty -- /bin/bash
 
 ```
 Potential useful commands
-  1. kubectl get pods --namespace=qos-guaranteed
-  2. kubectl delete pods hibench-pod namespace=qos-guaranteed
-  3. kubectl get pod hibench-pod --namespace=qos-guaranteed --output=yaml
+  1. kubectl get pods --namespace=qos-hibench
+  2. kubectl delete pods hibench-pod namespace=qos-hibench
+  3. kubectl get pod hibench-pod --namespace=qos-hibench --output=yaml
   4. minikube delete
-
-
+  5. kubectl get node minikube -o jsonpath='{.status.capacity}'
+  6. minikube image ls
 
 # Use
 
