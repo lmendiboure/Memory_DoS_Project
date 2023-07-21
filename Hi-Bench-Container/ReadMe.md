@@ -13,17 +13,18 @@ To run it with Minikube:
 # Start minikube
 # Note: Memory and CPU could be configured depending on your machine and requirements
 
-minikube start --memory 32000 --cpus 2 
-
-# Set docker env
-
-eval $(minikube docker-env)
+minikube start --memory 32000 --cpus 2 --nodes
 
 # Build image
 # Note: DOCKER_BUILDKIT=0 could be required to see the build state
 # Note: name used for the image should also be specified in the hibench-deployment.yaml file
+# Not required if the image is already loaded within your Docker images (docker image ls)
 
 DOCKER_BUILDKIT=0 docker build -t hibench:0.0.1 .
+
+# Load image within Minikube
+
+minikube image load hibench:0.0.1
 
 # Define a new namespace that will be used to deploy the pod
 # Note: a specific configuration is used to increase the amount of resource that can be used by this pod: avoid potentiel error 137 and enables both Hadoop and HiBench operation
@@ -35,16 +36,17 @@ kubectl create namespace qos-hibench
 kubectl apply -f hibench-deployment.yaml --namespace=qos-hibench
 
 # Access Shell
-kubectl exec --namespace=qos-guaranteed hibench-pod --stdin --tty -- /bin/bash
+kubectl exec --namespace=qos-hibench hibench-pod --stdin --tty -- /bin/bash
 
 ```
 Potential useful commands
   1. kubectl get pods --namespace=qos-hibench
-  2. kubectl delete pods hibench-pod namespace=qos-hibench
+  2. kubectl delete pods hibench-pod --namespace=qos-hibench
   3. kubectl get pod hibench-pod --namespace=qos-hibench --output=yaml
   4. minikube delete
   5. kubectl get node minikube -o jsonpath='{.status.capacity}'
   6. minikube image ls
+  7. minikube dashboard #to visualize nodes (after minikube addons enable metrics-server) 
 
 # Use
 
