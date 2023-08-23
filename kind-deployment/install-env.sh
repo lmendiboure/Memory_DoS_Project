@@ -1,5 +1,7 @@
 sudo apt-get update
 
+# Docker need to be installed, tested with Docker version 24.0.4
+
 # install kind -> specific version that is compatible with the deployed node, corresponds to one of the last non-rootless versions of kind
 
 sudo curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 \
