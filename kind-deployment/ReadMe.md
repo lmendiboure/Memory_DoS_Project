@@ -21,3 +21,13 @@ spec:
     ports:
     - containerPort: 80
 ```
+
+To reset the policy in real-time (within a given node):
+```console
+stop cri-resmgr (systemctl stop cri-resource-manager)
+reset policy data (cri-resmgr --reset-policy)
+change policy ($EDITOR /etc/cri-resource-manager/fallback.cfg)
+start cri-resmgr (systemctl start cri-resource-manager)
+```
+
+To execute that in real-time, a simple solution could be imaged. For example: docker cp a local policy to the different nodes + launch a script (docker exec container script)
