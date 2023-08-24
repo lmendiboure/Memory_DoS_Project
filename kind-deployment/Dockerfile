@@ -13,7 +13,12 @@ COPY ./fallback.cfg /etc/cri-resmgr/fallback.cfg
 
 # && mv /etc/cri-resmgr/fallback.cfg.sample /etc/cri-resmgr/fallback.cfg
 
+# Remove useless crio install
 # quay.io/aojea/kindnode:crio1630331170 intended to use crio but here the objective is to add cri-resource-manager
+
+RUN echo "Removing useless installs" \
+ && apt-get remove -y cri-o cri-o-runc \
+ && rm -r /etc/crio/
 
 RUN echo "Manage systemctl services" \
  && systemctl enable containerd \
