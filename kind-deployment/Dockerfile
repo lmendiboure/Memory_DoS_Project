@@ -16,13 +16,13 @@ COPY ./fallback.cfg /etc/cri-resmgr/fallback.cfg
 # Remove useless crio install
 # quay.io/aojea/kindnode:crio1630331170 intended to use crio but here the objective is to add cri-resource-manager
 
-RUN echo "Removing useless installs" \
- && apt-get remove -y cri-o cri-o-runc \
- && rm -r /etc/crio/
+#RUN echo "Removing useless installs" \
+# && apt-get remove -y cri-o cri-o-runc \
+# && rm -r /etc/crio/
 
 RUN echo "Manage systemctl services" \
  && systemctl enable containerd \
- && systemctl disable crio \
+# && systemctl disable crio \
  && systemctl enable cri-resource-manager \
  && sed '/KUBELET_EXTRA_ARGS/ s!$! --container-runtime-endpoint=/var/run/cri-resmgr/cri-resmgr.sock!' -i /etc/default/kubelet \
  && systemctl enable kubelet.service
